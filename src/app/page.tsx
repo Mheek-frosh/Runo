@@ -64,12 +64,6 @@ export default function Home() {
     useEffect(() => {
         const loadingTimer = setTimeout(() => setIsLoading(false), 2500);
 
-        // Auto-collapse banner after 3 seconds (plus loading time if needed, but let's just do 3s after mount + some delay for loading?)
-        // Let's do 3s after loading is done to ensure they see it.
-        // Actually, just 3s after mount might cut into loading screen.
-        // Let's do 5.5s (2.5s loading + 3s viewing).
-        const bannerTimer = setTimeout(() => setIsBannerOpen(false), 5500);
-
         const timer = setInterval(() => {
             setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
         }, 1000);
@@ -79,7 +73,6 @@ export default function Home() {
 
         return () => {
             clearTimeout(loadingTimer);
-            clearTimeout(bannerTimer);
             clearInterval(timer);
             clearInterval(carouselTimer);
         };
