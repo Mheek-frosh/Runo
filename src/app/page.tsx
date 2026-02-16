@@ -44,14 +44,9 @@ export default function Home() {
     const [orderDetails, setOrderDetails] = useState<OrderDetails>({ name: '', address: '', phone: '' });
     const [isLoading, setIsLoading] = useState(true);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isBannerOpen, setIsBannerOpen] = useState(true);
 
     const HERO_SLIDES = [
-        {
-            image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=90",
-            title: "Baking Memories",
-            highlight: "One Treat",
-            desc: "Handcrafted with love for your most precious moments. Experience sweetness like never before."
-        },
         {
             image: "/assets/happy.png",
             title: "Baked with Love",
@@ -68,6 +63,13 @@ export default function Home() {
 
     useEffect(() => {
         const loadingTimer = setTimeout(() => setIsLoading(false), 2500);
+
+        // Auto-collapse banner after 3 seconds (plus loading time if needed, but let's just do 3s after mount + some delay for loading?)
+        // Let's do 3s after loading is done to ensure they see it.
+        // Actually, just 3s after mount might cut into loading screen.
+        // Let's do 5.5s (2.5s loading + 3s viewing).
+        const bannerTimer = setTimeout(() => setIsBannerOpen(false), 5500);
+
         const timer = setInterval(() => {
             setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
         }, 1000);
@@ -77,6 +79,7 @@ export default function Home() {
 
         return () => {
             clearTimeout(loadingTimer);
+            clearTimeout(bannerTimer);
             clearInterval(timer);
             clearInterval(carouselTimer);
         };
@@ -186,35 +189,68 @@ export default function Home() {
                 </nav>
 
                 {/* Flash Sale Banner */}
-                <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-8 overflow-hidden relative border-b-4 border-secondary">
-                    <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-12 text-center md:text-left">
-                        <div className="flex flex-col">
-                            <span className="text-secondary-light font-bold tracking-widest uppercase text-sm mb-1">Limited Time Offer</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold">✨ FLASH SALE: 20% OFF! ✨</h2>
-                            <p className="text-white/80 mt-2 text-lg">Indulge in your favorites for less.</p>
-                        </div>
+                <AnimatePresence>
+                    {isBannerOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="bg-gradient-to-r from-primary to-primary-dark text-white overflow-hidden relative border-b-4 border-secondary origin-top"
+                        >
+                            <div className="py-8">
+                                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-12 text-center md:text-left">
+                                    <div className="flex flex-col">
+                                        <span className="text-secondary-light font-bold tracking-widest uppercase text-sm mb-1">Limited Time Offer</span>
+                                        <h2 className="text-4xl md:text-5xl font-serif font-bold">✨ FLASH SALE: 20% OFF! ✨</h2>
+                                        <p className="text-white/80 mt-2 text-lg">Indulge in your favorites for less.</p>
+                                    </div>
 
-                        <div className="flex items-center gap-6 bg-white/20 backdrop-blur-md rounded-[2rem] p-6 border border-white/30 shadow-2xl scale-110 md:scale-125">
-                            <div className="flex flex-col items-center">
-                                <span className="text-5xl font-mono font-black tracking-tighter">
-                                    {Math.floor(timeLeft / 60).toString().padStart(2, '0')}
-                                </span>
-                                <span className="text-[12px] uppercase font-bold opacity-80 mt-1">Min</span>
-                            </div>
-                            <span className="text-5xl font-mono font-black -mt-6">:</span>
-                            <div className="flex flex-col items-center">
-                                <span className="text-5xl font-mono font-black tracking-tighter">
-                                    {(timeLeft % 60).toString().padStart(2, '0')}
-                                </span>
-                                <span className="text-[12px] uppercase font-bold opacity-80 mt-1">Sec</span>
-                            </div>
-                        </div>
+                                    <div className="flex items-center gap-6 bg-white/20 backdrop-blur-md rounded-[2rem] p-6 border border-white/30 shadow-2xl scale-110 md:scale-125">
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-5xl font-mono font-black tracking-tighter">
+                                                {Math.floor(timeLeft / 60).toString().padStart(2, '0')}
+                                            </span>
+                                            <span className="text-[12px] uppercase font-bold opacity-80 mt-1">Min</span>
+                                        </div>
+                                        <span className="text-5xl font-mono font-black -mt-6">:</span>
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-5xl font-mono font-black tracking-tighter">
+                                                {(timeLeft % 60).toString().padStart(2, '0')}
+                                            </span>
+                                            <span className="text-[12px] uppercase font-bold opacity-80 mt-1">Sec</span>
+                                        </div>
+                                    </div>
 
-                        <button className="bg-white text-primary font-bold px-10 py-4 rounded-full hover:bg-secondary-light transition-all shadow-xl hover:-translate-y-1 active:scale-95 text-xl">
-                            Claim Discount
-                        </button>
-                    </div>
-                </div>
+                                    <button className="bg-white text-primary font-bold px-10 py-4 rounded-full hover:bg-secondary-light transition-all shadow-xl hover:-translate-y-1 active:scale-95 text-xl">
+                                        Claim Discount
+                                    </button>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setIsBannerOpen(false)}
+                                className="absolute top-2 right-4 text-white/50 hover:text-white transition-colors"
+                            >
+                                <X size={20} />
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Banner Toggle Button */}
+                <AnimatePresence>
+                    {!isBannerOpen && (
+                        <motion.button
+                            initial={{ y: -50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -50, opacity: 0 }}
+                            onClick={() => setIsBannerOpen(true)}
+                            className="absolute top-24 left-1/2 -translate-x-1/2 z-30 bg-primary text-white px-4 py-1 rounded-b-xl shadow-md text-xs font-bold tracking-widest uppercase hover:bg-primary-dark transition-colors"
+                        >
+                            Show Offer
+                        </motion.button>
+                    )}
+                </AnimatePresence>
 
                 {/* Hero Carousel */}
                 <header className="relative h-[85vh] flex items-center justify-center overflow-hidden">
