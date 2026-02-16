@@ -15,6 +15,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
     title: "Runo's Oven | Delicious Cakes & Treats",
     description: "Baking memories, one treat at a time. Order your favorite cakes and treats from Runo's Oven.",
+    icons: {
+        icon: '/assets/runologo.png',
+        apple: '/assets/runologo.png',
+    },
+    openGraph: {
+        images: ['/assets/runologo.png'],
+    },
 };
 
 export default function RootLayout({
