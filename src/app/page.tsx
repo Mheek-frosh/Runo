@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ShoppingCart, MessageCircle, X, Plus, Minus, MapPin, Phone, User } from 'lucide-react';
+import { ShoppingCart, MessageCircle, X, Plus, Minus, MapPin, Phone, User, Instagram, Facebook, Twitter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
@@ -511,11 +511,14 @@ export default function Home() {
                             </div>
                             <p className="text-white/60 leading-relaxed text-lg">Deliciously handcrafted cakes, donuts, and treats for every occasion. We bring sweetness and joy to your doorstep, one bite at a time.</p>
                             <div className="flex gap-4">
-                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                                    <span className="font-bold text-xl uppercase italic">Ig</span>
+                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+                                    <Instagram className="text-white group-hover:scale-110 transition-transform" />
                                 </div>
-                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                                    <span className="font-bold text-xl uppercase italic">Fb</span>
+                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+                                    <Facebook className="text-white group-hover:scale-110 transition-transform" />
+                                </div>
+                                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+                                    <Twitter className="text-white group-hover:scale-110 transition-transform" />
                                 </div>
                             </div>
                         </div>
