@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { ShoppingCart, MessageCircle, X, Plus, Minus, MapPin, Phone, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
+
 // Types
 interface Product {
     id: number;
@@ -30,7 +32,7 @@ const PRODUCTS: Product[] = [
     { id: 1, name: "Velvet Rose Cake", price: 15000, image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80", category: "Cake" },
     { id: 2, name: "Chocolate Bliss", price: 12000, image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80", category: "Treats" },
     { id: 3, name: "Strawberry Dream", price: 14000, image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80", category: "Cake" },
-    { id: 4, name: "Vanilla Glaze Donuts", price: 5000, image: "https://images.unsplash.com/photo-1533930250856-a111fa355990?w=800&q=80", category: "Treats" },
+    { id: 4, name: "Vanilla Glaze Donuts", price: 5000, image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80", category: "Treats" },
     { id: 5, name: "Caramel Drizzle Cake", price: 18000, image: "https://images.unsplash.com/photo-1535141123063-3bb6ca609e41?w=800&q=80", category: "Cake" },
     { id: 6, name: "Assorted Cupcakes", price: 8000, image: "https://images.unsplash.com/photo-1519869325930-281384150729?w=800&q=80", category: "Treats" },
 ];
@@ -124,7 +126,7 @@ export default function Home() {
                             className="space-y-6"
                         >
                             <div className="relative w-32 h-32 md:w-48 md:h-48 mx-auto">
-                                <Image src="/runologo.png" alt="Logo" fill className="object-contain drop-shadow-2xl" />
+                                <Image src="/runlogo.png" alt="Logo" fill className="object-contain drop-shadow-2xl" />
                             </div>
                             <h2 className="text-4xl md:text-6xl font-serif text-bakery-chocolate italic tracking-tighter">Runo's Oven</h2>
                             <div className="w-16 h-1 bg-primary mx-auto rounded-full overflow-hidden">
@@ -154,7 +156,7 @@ export default function Home() {
                     <div className="flex items-center gap-2">
                         <div className="relative w-12 h-12 md:w-14 md:h-14">
                             <Image
-                                src="/runologo.png"
+                                src="/runlogo.png"
                                 alt="Runo's Oven"
                                 fill
                                 className="rounded-full shadow-inner object-contain"
@@ -504,7 +506,7 @@ export default function Home() {
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
                         <div className="space-y-8">
                             <div className="flex items-center gap-3">
-                                <Image src="/runologo.png" alt="Logo" width={60} height={60} className="rounded-full bg-white/10 p-1" />
+                                <Image src="/runlogo.png" alt="Logo" width={60} height={60} className="rounded-full bg-white/10 p-1" />
                                 <h3 className="text-4xl font-serif italic text-primary-light">Runo's Oven</h3>
                             </div>
                             <p className="text-white/60 leading-relaxed text-lg">Deliciously handcrafted cakes, donuts, and treats for every occasion. We bring sweetness and joy to your doorstep, one bite at a time.</p>
