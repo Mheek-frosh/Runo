@@ -53,13 +53,13 @@ export default function Home() {
             desc: "Handcrafted with love for your most precious moments. Experience sweetness like never before."
         },
         {
-            image: "/happy.png",
+            image: "/assets/happy.png",
             title: "Baked with Love",
             highlight: "Fresh Daily",
             desc: "Our master bakers bring you the freshest treats every single morning."
         },
         {
-            image: "/morecakes.png",
+            image: "/assets/morecakes.png",
             title: "Premium Quality",
             highlight: "Crafted Care",
             desc: "Using only the finest ingredients to create masterpieces for your table."
@@ -126,7 +126,7 @@ export default function Home() {
                             className="space-y-6"
                         >
                             <div className="relative w-32 h-32 md:w-48 md:h-48 mx-auto">
-                                <Image src="/runlogo.png" alt="Logo" fill className="object-contain drop-shadow-2xl" />
+                                <Image src="/assets/runologo.png" alt="Logo" fill className="object-contain drop-shadow-2xl" />
                             </div>
                             <h2 className="text-4xl md:text-6xl font-serif text-bakery-chocolate italic tracking-tighter">Runo's Oven</h2>
                             <div className="w-16 h-1 bg-primary mx-auto rounded-full overflow-hidden">
@@ -156,7 +156,7 @@ export default function Home() {
                     <div className="flex items-center gap-2">
                         <div className="relative w-12 h-12 md:w-14 md:h-14">
                             <Image
-                                src="/runlogo.png"
+                                src="/assets/runologo.png"
                                 alt="Runo's Oven"
                                 fill
                                 className="rounded-full shadow-inner object-contain"
@@ -506,7 +506,7 @@ export default function Home() {
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
                         <div className="space-y-8">
                             <div className="flex items-center gap-3">
-                                <Image src="/runlogo.png" alt="Logo" width={60} height={60} className="rounded-full bg-white/10 p-1" />
+                                <Image src="/assets/runologo.png" alt="Logo" width={60} height={60} className="rounded-full bg-white/10 p-1" />
                                 <h3 className="text-4xl font-serif italic text-primary-light">Runo's Oven</h3>
                             </div>
                             <p className="text-white/60 leading-relaxed text-lg">Deliciously handcrafted cakes, donuts, and treats for every occasion. We bring sweetness and joy to your doorstep, one bite at a time.</p>
